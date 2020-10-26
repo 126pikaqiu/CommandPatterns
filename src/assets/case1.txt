@@ -1,0 +1,10 @@
+A "world"
+a "hello"
+d 3
+D 5
+u
+u
+r
+l 3
+D 5
+D 20

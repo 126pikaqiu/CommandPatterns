@@ -1,0 +1,11 @@
+d 3
+a "the second "
+A "test"
+u
+m 2 m2
+$m2
+d 6
+u
+u
+r
+l 3

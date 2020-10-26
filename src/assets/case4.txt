@@ -1,0 +1,11 @@
+a "Unified modeling language"
+d 21
+A "Design patterns"
+m 2 m1
+$m1
+l 2
+u
+u
+u
+r
+r
