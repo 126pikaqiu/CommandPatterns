@@ -12,17 +12,17 @@ import constants.CommandType;
  */
 public class ShowCommand implements Command {
 
-    private EditorModel model = EditorModel.getInstance();
+    private EditorModel model;
 
-    public ShowCommand(String argus){
-
+    public ShowCommand(String argus, EditorModel model){
+        this.model = model;
     }
 
     public ShowCommand(){}
 
     @Override
     public String execute() {
-        return EditorModel.getInstance().get();
+        return this.model.get();
     }
 
     @Override

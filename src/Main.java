@@ -4,7 +4,6 @@ import io.impl.MyFileInput;
 import io.impl.MyFileOutput;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -29,8 +28,8 @@ public class Main {
         Client client = new Client(commandMaps);
 
         // Test1：命令行输入输出测试
-        client.start(new CommandLineInput(),new CommandLineOutput());
-        client.flush();
+//        client.start(new CommandLineInput(),new CommandLineOutput());
+//        client.flush();
 
         // Test2：文本文件测试
 //         client.start(new MyFileInput(new File("src/assets/case1.txt")), new MyFileOutput(new File("src/assets/solution1.txt")));
@@ -46,17 +45,17 @@ public class Main {
 //         client.flush();
 
         // Test3：文本输入，命令行输出测试
-//        System.out.println("===============");
-//        client.start(new MyFileInput(new File("src/assets/case1.txt")), new CommandLineOutput());
-//        client.flush();
-//        System.out.println("===============");
-//        client.start(new MyFileInput(new File("src/assets/case2.txt")), new CommandLineOutput());
-//        client.flush();
-//        System.out.println("===============");
-//        client.start(new MyFileInput(new File("src/assets/case3.txt")), new CommandLineOutput());
-//        client.flush();
-//        System.out.println("===============");
-//        client.start(new MyFileInput(new File("src/assets/case4.txt")), new CommandLineOutput());
-//        client.flush();
+        System.out.println("===============");
+        client.start(new MyFileInput(new File("src/assets/case1.txt")), new CommandLineOutput());
+        client.flush();
+        System.out.println("===============");
+        client.start(new MyFileInput(new File("src/assets/case2.txt")), new CommandLineOutput());
+        client.flush();
+        System.out.println("===============");
+        client.start(new MyFileInput(new File("src/assets/case3.txt")), new CommandLineOutput());
+        client.flush();
+        System.out.println("===============");
+        client.start(new MyFileInput(new File("src/assets/case4.txt")), new CommandLineOutput());
+        client.flush();
     }
 }

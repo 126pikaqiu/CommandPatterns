@@ -1,7 +1,6 @@
 package invoker;
 
 import command.Command;
-import model.EditorModel;
 
 /**
  * @author 刘佳兴

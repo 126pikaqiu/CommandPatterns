@@ -13,11 +13,12 @@ public class DeleteBeforeCommand implements Command {
     private String argus;
     private String deletedString;
 
-    public DeleteBeforeCommand(String argus) {
+    public DeleteBeforeCommand(String argus, EditorModel model) {
         this.argus = argus;
+        this.model = model;
     }
 
-    private EditorModel model = EditorModel.getInstance();
+    private EditorModel model;
 
     @Override
     public String execute() {
@@ -42,7 +43,7 @@ public class DeleteBeforeCommand implements Command {
 
     @Override
     public Command myClone() {
-        return new DeleteBeforeCommand(this.argus);
+        return new DeleteBeforeCommand(this.argus, this.model);
     }
 
     @Override

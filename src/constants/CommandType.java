@@ -9,6 +9,4 @@ public class CommandType {
     public final static int CAT_COMMAND = 0;
     public final static int MODIFY_COMMAND = 1;
     public final static int HELP_COMMAND = 2;
-    public final static int NO_COMMAND = -1;
-    public final static int ABSTRACT_COMMAND = -1;
 }

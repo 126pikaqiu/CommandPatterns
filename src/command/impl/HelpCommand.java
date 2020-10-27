@@ -10,13 +10,18 @@ import model.EditorModel;
  * mail 1260968291@qq.com
  */
 public class HelpCommand implements Command {
-    private String argus = EditorModel.getInstance().get();
-    
-    public HelpCommand(){}
+    private String argus ;
+    private EditorModel model;
+
+    public HelpCommand(EditorModel model){
+        this.model = model;
+        this.argus = model.get();
+    }
 
     public HelpCommand(String argus){
         this.argus = argus;
     }
+    public HelpCommand(){}
     @Override
     public String execute() {
         return this.argus;

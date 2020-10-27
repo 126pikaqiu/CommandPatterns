@@ -4,6 +4,8 @@ import constants.CommandType;
 import invoker.Editor;
 import io.MyInput;
 import io.MyOutput;
+import model.EditorModel;
+
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -18,16 +20,16 @@ public class Client {
 
     private Stack<Command> past;
     private Stack<Command> undo;
-
-    private Map<String, MacroEditorCommand> macros;
-
+    private Map<String, Command> macros;
     private Map<Character, String> commandMaps;
+    private EditorModel model;
 
-    Client(Map<Character, String> commandMaps){
+    public Client(Map<Character, String> commandMaps){
         past = new Stack<>();
         undo = new Stack<>();
         this.macros = new HashMap<>();
         this.commandMaps = commandMaps;
+        this.model = new EditorModel();
     }
 
     public void start(MyInput input, MyOutput output) throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InstantiationException,
@@ -57,8 +59,8 @@ public class Client {
 
         if(this.commandMaps.get(c) != null){
             Class<?> classBook = Class.forName(this.commandMaps.get(c));
-            Constructor<?> declaredConstructorBook = classBook.getDeclaredConstructor(String.class);
-            cmd = (Command) declaredConstructorBook.newInstance(s);
+            Constructor<?> declaredConstructorBook = classBook.getDeclaredConstructor(String.class,EditorModel.class);
+            cmd = (Command) declaredConstructorBook.newInstance(s, model);
             return cmd;
         }
 
@@ -69,14 +71,14 @@ public class Client {
                     undo.redo();
                     past.push(undo);
                 }
-                cmd = new HelpCommand(); break;
+                cmd = new HelpCommand(model); break;
             case 'u':
                 if(!this.past.empty()){
                     Command tmp = this.past.pop();
                     tmp.undo();
                     undo.push(tmp);
                 }
-                cmd = new HelpCommand(); break;
+                cmd = new HelpCommand(model); break;
             case 'l':
                 cmd = handleListCommand(s.trim());
                 break;
@@ -127,13 +129,13 @@ public class Client {
             commandList.add(past.peek().myClone());
         }
         macros.put(name,new MacroEditorCommand(name,commandList));
-        return new HelpCommand(null);
+        return new HelpCommand();
     }
 
     public void flush(){
         past = new Stack<>();
         undo = new Stack<>();
         macros = new HashMap<>();
-        new FlushCommand().execute();
+        new FlushCommand(this.model).execute();
     }
 }

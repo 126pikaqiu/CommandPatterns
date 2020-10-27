@@ -13,7 +13,7 @@ public class DeleteAfterCommand implements Command {
     private String argus;
     private String deletedString;
 
-    private EditorModel model = EditorModel.getInstance();
+    private EditorModel model;
 
     @Override
     public String execute() {
@@ -30,7 +30,8 @@ public class DeleteAfterCommand implements Command {
         return this.model.get();
     }
 
-    public DeleteAfterCommand(String argus) {
+    public DeleteAfterCommand(String argus, EditorModel model) {
+        this.model = model;
         this.argus = argus;
     }
 
@@ -41,7 +42,7 @@ public class DeleteAfterCommand implements Command {
 
     @Override
     public Command myClone() {
-        return new DeleteAfterCommand(this.argus);
+        return new DeleteAfterCommand(this.argus, this.model);
     }
 
     @Override

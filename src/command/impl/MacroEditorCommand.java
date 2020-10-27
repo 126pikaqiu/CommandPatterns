@@ -14,10 +14,12 @@ public class MacroEditorCommand implements Command {
 
     private List<Command> commandList;
     private String argus;
+
     public MacroEditorCommand(String argus, List<Command> commandList){
         this.argus = argus;
         this.commandList = commandList;
     }
+
     @Override
     public String execute() {
         String result = null;

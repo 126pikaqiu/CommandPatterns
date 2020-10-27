@@ -8,13 +8,7 @@ package model;
 public class EditorModel {
     private String text = "";
 
-    private EditorModel(){}
-
-    private static EditorModel instance = new EditorModel();
-
-    public static EditorModel getInstance(){
-        return instance;
-    }
+    public EditorModel(){}
 
     public void addBefore(String s){
         s += text;

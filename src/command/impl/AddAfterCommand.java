@@ -12,10 +12,11 @@ import model.EditorModel;
 public class AddAfterCommand implements Command {
 
     private String argus;
-    private EditorModel model = EditorModel.getInstance();
+    private EditorModel model;
 
-    public AddAfterCommand(String argus){
+    public AddAfterCommand(String argus, EditorModel model){
         this.argus = argus;
+        this.model = model;
     }
 
     @Override
@@ -33,7 +34,7 @@ public class AddAfterCommand implements Command {
 
     @Override
     public Command myClone() {
-        return new AddAfterCommand(this.argus);
+        return new AddAfterCommand(this.argus, this.model);
     }
 
     @Override

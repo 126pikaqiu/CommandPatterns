@@ -13,8 +13,14 @@ public class FlushCommand implements Command {
 
     @Override
     public String execute() {
-        EditorModel.getInstance().flush();
-        return EditorModel.getInstance().get();
+        this.model.flush();
+        return this.model.get();
+    }
+
+    private EditorModel model;
+
+    public FlushCommand(EditorModel model){
+        this.model = model;
     }
 
     @Override
